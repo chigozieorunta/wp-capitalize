@@ -10,12 +10,19 @@
 */
 
 //Define Plugin Path
-define("WPCAPITALIZE", ABSPATH.'wp-content/plugins/wp-capitalize');
+define("WPCAPITALIZE", ABSPATH.'wp-content/plugins/wp-capitalize/');
 
 //Register Admin Menu
 add_action('admin_menu', 'wp_capitalize_menu');
 function wp_capitalize_menu() {
-    add_menu_page( 'WP Capitalize', 'WP Capitalize', 'manage_options', 'wp-capitalize', 'wp_capitalize_init' );
+    add_menu_page('WP Capitalize', 'WP Capitalize', 'manage_options', 'wp-capitalize', 'wp_capitalize_init');
+}
+
+//Add CSS & JS Scripting...
+add_action('wp_enqueue_scripts', 'wp_capitalize_scripts');
+function wp_capitalize_scripts() {
+    wp_register_style('wp-capitalize-style', WPCAPITALIZE.'css/wp-capitalize.css');
+    wp_enqueue_style('wp-capitalize-style');
 }
 
 //Custom Functions
