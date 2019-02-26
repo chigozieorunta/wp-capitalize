@@ -26,4 +26,11 @@ function wp_capitalize_init() {
     require_once('wp-capitalize-html.php');
 }
 
+//Add Filter
+add_filter('the_title', 'wp_capitalize_post_title' );
+function wp_capitalize_post_title($title) {
+	$title = '<span style="text-transform: capitalize; ">'.$title.'</span>';
+	return $title;
+}
+
 ?>
