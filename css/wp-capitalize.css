@@ -48,10 +48,10 @@
 	text-align: center;
 }
 
-h3 {
+h4 {
 	position: relative;
 }
 
-h3 > i {
+h4 > i {
 	position: absolute; top: 5px; left: -30px;
 }
