@@ -21,10 +21,10 @@ function wp_capitalize_menu() {
 //CSS styling
 add_action('admin_enqueue_scripts', 'wp_capitalize_styles');
 function wp_capitalize_styles() {
-    wp_register_style('bootstrap', WPCAPITALIZE.'css/bootstrap.min.css');
+    /*wp_register_style('bootstrap', WPCAPITALIZE.'css/bootstrap.min.css');
     wp_enqueue_style('bootstrap');
     wp_register_style('bootstrap-spacer', WPCAPITALIZE.'css/bootstrap-spacer.min.css');
-    wp_enqueue_style('bootstrap-spacer');
+    wp_enqueue_style('bootstrap-spacer');*/
     wp_register_style('wp_capitalize_style', WPCAPITALIZE.'css/wp-capitalize.css');
     wp_enqueue_style('wp_capitalize_style');
 }
