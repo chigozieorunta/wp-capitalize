@@ -18,25 +18,6 @@ define("WPCAPITALIZE", plugin_dir_url( __FILE__ ));
 
 //Register Admin Menu
 
-
-//CSS styling
-add_action('admin_enqueue_scripts', 'wp_capitalize_styles');
-function wp_capitalize_styles() {
-    /*wp_register_style('bootstrap', WPCAPITALIZE.'css/bootstrap.min.css');
-    wp_enqueue_style('bootstrap');
-    wp_register_style('bootstrap-spacer', WPCAPITALIZE.'css/bootstrap-spacer.min.css');
-    wp_enqueue_style('bootstrap-spacer');*/
-    wp_register_style('wp_capitalize_style', WPCAPITALIZE.'css/wp-capitalize.css');
-    wp_enqueue_style('wp_capitalize_style');
-}
-
-//JS Scripting
-add_action('admin_enqueue_scripts', 'wp_capitalize_scripts');
-function wp_capitalize_scripts() {
-    wp_register_script('wp_capitalize_script', WPCAPITALIZE.'js/wp-capitalize.js', array('jquery'), '1', true);
-    wp_enqueue_script('wp_capitalize_script');
-}
-
 //Custom Functions
 require_once('wp-capitalize-functions.php');
 
@@ -52,7 +33,7 @@ function wp_capitalize_post_title($title) {
 	return $title;
 }
 
-wpGutenbergBlocks::getInstance();
+wpCapitalize::getInstance();
 
  /**
  * Class wpCapitalize
@@ -73,6 +54,10 @@ class wpCapitalize {
     public function __construct() {
         add_action('init', 'wp_gutenberg_blocks_init');
         add_action('admin_menu', 'self::registerMenu');
+        add_action(
+            'admin_enqueue_scripts', 
+            'self::registerScript'
+        );
     }
 
     /**
@@ -98,27 +83,25 @@ class wpCapitalize {
             plugins_url('step-01/block.js', __FILE__),
             array('wp-blocks', 'wp-element')
         );
-    }
-
-    /**
-	 * Register Block Type Method
-	 *
-     * @access private
-	 * @since  1.0.0
-	 */
-    private static function registerBlockType() {
-        register_block_type(
-            'wp_gutenberg_blocks/hello-world-step-01', 
-            array(
-                'editor_script' => 'gutenberg-boilerplate-es5-step01',
-            ) 
+        wp_register_style(
+            'wp-capitalize-style', 
+            WPCAPITALIZE.'css/wp-capitalize.css'
         );
+        wp_register_script(
+            'wp-capitalize-script', 
+            WPCAPITALIZE.'js/wp-capitalize.js', 
+            array('jquery'), 
+            '1', 
+            true
+        );
+        wp_enqueue_style('wp-capitalize-style');
+        wp_enqueue_script('wp-capitalize-script');
     }
 
     /**
 	 * Register Menu Method
 	 *
-     * @access privategit 
+     * @access private  
 	 * @since  1.0.0
 	 */
     private static function registerMenu() {
