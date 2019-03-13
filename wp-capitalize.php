@@ -52,7 +52,7 @@ class wpCapitalize {
 	 * @since  1.0.0
 	 */
     public function __construct() {
-        add_action('init', 'wp_gutenberg_blocks_init');
+        add_action('init', 'wp_capitalize_init');
         add_action('admin_menu', 'self::registerMenu');
         add_action(
             'admin_enqueue_scripts', 
@@ -66,9 +66,9 @@ class wpCapitalize {
      * @access private
 	 * @since  1.0.0
 	 */
-    private static function wp_gutenberg_blocks_init() {
+    private static function wp_capitalize_init() {
+        self::registerMenu();
         self::registerScript();
-        self::registerBlockType();
     }
 
     /**
