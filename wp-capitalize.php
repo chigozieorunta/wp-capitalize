@@ -78,21 +78,14 @@ class wpCapitalize {
 	 * @since  1.0.0
 	 */
     private static function registerScript() {
-        wp_register_script(
-            'wp_gutenberg_blocks',
-            plugins_url('step-01/block.js', __FILE__),
-            array('wp-blocks', 'wp-element')
-        );
         wp_register_style(
             'wp-capitalize-style', 
-            WPCAPITALIZE.'css/wp-capitalize.css'
+            plugins_url('css/wp-capitalize.css', __FILE__)
         );
         wp_register_script(
             'wp-capitalize-script', 
-            WPCAPITALIZE.'js/wp-capitalize.js', 
-            array('jquery'), 
-            '1', 
-            true
+            plugins_url('js/wp-capitalize.js', __FILE__),
+            array('jquery'), '1', true
         );
         wp_enqueue_style('wp-capitalize-style');
         wp_enqueue_script('wp-capitalize-script');
