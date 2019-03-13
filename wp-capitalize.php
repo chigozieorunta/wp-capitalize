@@ -17,10 +17,7 @@
 define("WPCAPITALIZE", plugin_dir_url( __FILE__ ));
 
 //Register Admin Menu
-add_action('admin_menu', 'wp_capitalize_menu');
-function wp_capitalize_menu() {
-    add_menu_page('WP Capitalize', 'WP Capitalize', 'manage_options', 'wp-capitalize', 'wp_capitalize_init');
-}
+
 
 //CSS styling
 add_action('admin_enqueue_scripts', 'wp_capitalize_styles');
@@ -125,7 +122,11 @@ class wpGutenbergBlocks {
 	 * @since  1.0.0
 	 */
     private static function registerMenu() {
-        add_menu_page('wp_gutenberg_blocks', 'wp_gutenberg_blocks', 'manage_options', 'wp_gutenberg_blocks', 'self::registerHTML');
+        add_menu_page(
+            'wp-capitalize', 'wp-capitalize', 
+            'manage_options', 'wp-capitalize', 
+            'self::registerHTML'
+        );
     }
 
     /**
