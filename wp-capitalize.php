@@ -45,7 +45,8 @@ class wpCapitalize {
 	 * @since  1.0.0
 	 */
     public function __construct() {
-        add_action('init', 'wp_capitalize_init');
+        self::wp_capitalize_init();
+        add_action('init', 'self::wp_capitalize_init');
         add_action('admin_menu', 'self::registerMenu');
         add_action(
             'admin_enqueue_scripts', 
