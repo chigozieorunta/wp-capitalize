@@ -16,15 +16,8 @@
 //Define Plugin Path
 define("WPCAPITALIZE", plugin_dir_url( __FILE__ ));
 
-//Register Admin Menu
-
 //Custom Functions
 require_once('wp-capitalize-functions.php');
-
-//Add Options Page
-function wp_capitalize_init() {
-    require_once('wp-capitalize-html.php');
-}
 
 //Add Filter
 add_filter('the_title', 'wp_capitalize_post_title' );
@@ -112,7 +105,7 @@ class wpCapitalize {
 	 * @since  1.0.0
 	 */
     private static function registerHTML() {
-        require_once('wp-gutenberg-blocks-html.php');
+        require_once('wp-capitalize-html.php');
     }
 
     /**
