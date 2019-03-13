@@ -55,9 +55,9 @@ function wp_capitalize_post_title($title) {
 wpGutenbergBlocks::getInstance();
 
  /**
- * Class wp_gutenberg_blocks
+ * Class wpCapitalize
  */
-class wpGutenbergBlocks {
+class wpCapitalize {
     /**
 	 * Private static variables
 	 *
@@ -118,7 +118,7 @@ class wpGutenbergBlocks {
     /**
 	 * Register Menu Method
 	 *
-     * @access private
+     * @access privategit 
 	 * @since  1.0.0
 	 */
     private static function registerMenu() {
