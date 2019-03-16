@@ -35,7 +35,7 @@ class wpCapitalize {
 	 * @since  1.0.0
 	 */
     public function __construct() {
-        add_action('admin_menu', 'registerMenu');
+        add_action('admin_menu', array(get_called_class(), 'registerMenu'));
     }
 
     /**
@@ -44,11 +44,13 @@ class wpCapitalize {
      * @access private  
 	 * @since  1.0.0
 	 */
-    public function registerMenu() {
+    public static function registerMenu() {
         add_menu_page(
-            'wp-capitalize', 'wp-capitalize', 
-            'manage_options', 'wp-capitalize', 
-            array($this, 'registerHTML')
+            'wp-capitalize', 
+            'wp-capitalize', 
+            'manage_options', 
+            'wp-capitalize', 
+            array(get_called_class(), 'registerHTML')
         );
     }
 
@@ -58,7 +60,7 @@ class wpCapitalize {
      * @access private
 	 * @since  1.0.0
 	 */
-    public function registerHTML() {
+    public static function registerHTML() {
         require_once('wp-capitalize-html.php');
     }
 
