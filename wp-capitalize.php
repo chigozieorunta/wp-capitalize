@@ -16,19 +16,9 @@
 //Define Plugin Path
 define("WPCAPITALIZE", plugin_dir_url( __FILE__ ));
 
-//Custom Functions
-require_once('wp-capitalize-functions.php');
-
-//Add Filter
-add_filter('the_title', 'wp_capitalize_post_title' );
-function wp_capitalize_post_title($title) {
-	$title = '<span style="text-transform: capitalize; ">'.$title.'</span>';
-	return $title;
-}
-
 wpCapitalize::getInstance();
 
- /**
+/**
  * Class wpCapitalize
  */
 class wpCapitalize {
@@ -45,44 +35,7 @@ class wpCapitalize {
 	 * @since  1.0.0
 	 */
     public function __construct() {
-        self::wp_capitalize_init();
-        add_action('init', 'self::wp_capitalize_init');
-        add_action('admin_menu', 'self::registerMenu');
-        add_action(
-            'admin_enqueue_scripts', 
-            'self::registerScript'
-        );
-    }
-
-    /**
-	 * Init Method
-	 *
-     * @access private
-	 * @since  1.0.0
-	 */
-    private static function wp_capitalize_init() {
-        self::registerMenu();
-        self::registerScript();
-    }
-
-    /**
-	 * Register Script Method
-	 *
-     * @access private
-	 * @since  1.0.0
-	 */
-    private static function registerScript() {
-        wp_register_style(
-            'wp-capitalize-style', 
-            plugins_url('css/wp-capitalize.css', __FILE__)
-        );
-        wp_register_script(
-            'wp-capitalize-script', 
-            plugins_url('js/wp-capitalize.js', __FILE__),
-            array('jquery'), '1', true
-        );
-        wp_enqueue_style('wp-capitalize-style');
-        wp_enqueue_script('wp-capitalize-script');
+        add_action('admin_menu', 'registerMenu');
     }
 
     /**
@@ -91,11 +44,11 @@ class wpCapitalize {
      * @access private  
 	 * @since  1.0.0
 	 */
-    private static function registerMenu() {
+    public function registerMenu() {
         add_menu_page(
             'wp-capitalize', 'wp-capitalize', 
             'manage_options', 'wp-capitalize', 
-            'self::registerHTML'
+            array($this, 'registerHTML')
         );
     }
 
@@ -105,7 +58,7 @@ class wpCapitalize {
      * @access private
 	 * @since  1.0.0
 	 */
-    private static function registerHTML() {
+    public function registerHTML() {
         require_once('wp-capitalize-html.php');
     }
 
