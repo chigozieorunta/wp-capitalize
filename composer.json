@@ -1,0 +1,18 @@
+{
+  "name": "chigozieorunta/wp-capitalize",
+  "description": "A simple WordPress plugin designed to help you capitalize post titles, author names and others...",
+  "type": "composer-plugin",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Chigozie Orunta",
+      "email": "chigozieorunta@yahoo.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Capitalize//": "src/"
+    }
+  },
+  "require": {}
+}
